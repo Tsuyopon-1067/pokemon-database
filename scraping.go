@@ -5,24 +5,10 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
-	"strconv"
-
 	"github.com/gocolly/colly/v2"
 	"golang.org/x/text/encoding/japanese"
 	"golang.org/x/text/transform"
 )
-
-type Pokemon struct {
-	Id   int
-	Name string
-	H    int
-	A    int
-	B    int
-	C    int
-	D    int
-	S    int
-	Sum  int
-}
 
 func scraping() []*Pokemon {
 	var pokemonList []*Pokemon
@@ -45,18 +31,7 @@ func scraping() []*Pokemon {
 		// この関数はテーブ
 		cells := e.ChildTexts("td")
 		if len(cells) >= 11 {
-			var id, h, a, b, c, d, s, sum int
-			id, _ = strconv.Atoi(cells[0])
-			name := cells[1]
-			h, _ = strconv.Atoi(cells[4])
-			a, _ = strconv.Atoi(cells[5])
-			b, _ = strconv.Atoi(cells[6])
-			c, _ = strconv.Atoi(cells[7])
-			d, _ = strconv.Atoi(cells[8])
-			s, _ = strconv.Atoi(cells[9])
-			sum, _ = strconv.Atoi(cells[10])
-
-			tmp := Pokemon{Id: id, Name: name, H: h, A: a, B: b, C: c, D: d, S: s, Sum: sum}
+			tmp := createPokemonFromString(cells[0], cells[1], cells[4], cells[5], cells[6], cells[7], cells[8], cells[9], cells[10])
 			pokemonList = append(pokemonList, &tmp)
 		}
 	})
@@ -69,6 +44,6 @@ func scraping() []*Pokemon {
 
 func printList(pokemonList []*Pokemon) {
 	for _, v := range pokemonList {
-		fmt.Printf("%d, %s: [%d, %d, %d, %d, %d, %d]->%d\n", v.Id, v.Name, v.H, v.A, v.B, v.C, v.D, v.S, v.Sum)
+		fmt.Println(pokemonToString(*v))
 	}
 }
