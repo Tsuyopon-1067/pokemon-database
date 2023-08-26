@@ -1,13 +1,21 @@
 # pokemon-database
 
+# 関数とかの仕様
 ## connectSql.go
+SQLとのやりとり
+## printAll()
+テーブル内のデータを標準出力
+## insert(pokemon Pokemon)
+テーブルにデータ追加
 ## scraping.go
+スクレイピング関連
 ### func scraping() []*Pokemon
 wikiからスクレイピングしたデータをスライスに格納して返す
 ### func printList(pokemonList []*Pokemon)
 スライスの各要素を標準出力
 
 ## pokemonStruct.go
+構造体関連
 ### type Pokemon struct
 ポケモンデータの構造体 <ID、名前、HP、攻撃、防御、特攻、特防、素早さ、合計>
 ### func pokemonToString(pokemon Pokemon) string
