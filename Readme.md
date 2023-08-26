@@ -1,14 +1,38 @@
 # pokemon-database
 
 # 関数とかの仕様
+## main.go
+コマンドとかを受け付ける
+### func main()
+コマンドライン引数かそれ以外で分岐
+### func normal()
+通常モードの処理（無限ループ）
+### func help()
+ヘルプを表示
+### func other()
+コマンドライン引数が想定外だったときに呼び出される簡易ヘルプ
+### func commandInsert()
+標準入力で受け取ったデータから構造体を生成してデータベースに登録する
+### func commandInsert()
+標準入力で受け取った値にマッチするものをデータベースから削除する
+### func isNumber()
+引数が自然数ならtrueを返す（つまり負数や少数は非対応）
+### func commandPrint()
+データベースの全レコードを出力する
+
 ## connectSql.go
 SQLとのやりとり
 ### func printAll()
 テーブル内のデータを標準出力
 ### func insert(pokemon Pokemon)
 テーブルにデータ追加
+### func deleteId(id string)
+データベースから指定Idのレコードを削除
+### func deleteId(name string)
+データベースから指定Nameのレコードを削除
 ### func resetLoad()
 テーブルからレコードを全削除してからスクレイピングしたデータを登録する
+
 ## scraping.go
 スクレイピング関連
 ### func scraping() []*Pokemon

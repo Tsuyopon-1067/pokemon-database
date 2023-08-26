@@ -45,6 +45,30 @@ func insert(pokemon Pokemon) {
     }
 }
 
+func deleteId(id string) {
+    db, _ := sql.Open(SQL_NAME, SQL_LOGIN)
+    defer db.Close()
+
+	// Execute the query
+    _, err := db.Exec("DELETE FROM Hgss WHERE Id=?", id)
+
+    if err != nil {
+        panic(err.Error()) // proper error handling instead of panic in your app
+    }
+}
+
+func deleteName(name string) {
+    db, _ := sql.Open(SQL_NAME, SQL_LOGIN)
+    defer db.Close()
+
+	// Execute the query
+    _, err := db.Exec("DELETE FROM Hgss WHERE Name='?'", name)
+
+    if err != nil {
+        panic(err.Error()) // proper error handling instead of panic in your app
+    }
+}
+
 func resetLoad() {
     db, _ := sql.Open(SQL_NAME, SQL_LOGIN)
     defer db.Close()
