@@ -37,8 +37,7 @@ func insert(pokemon Pokemon) {
     defer db.Close()
 
 	// Execute the query
-	query := fmt.Sprintf("INSERT INTO Hgss VALUES (%d, '%s', %d, %d, %d, %d, %d, %d, %d)\n", pokemon.Id, pokemon.Name, pokemon.H, pokemon.A, pokemon.B, pokemon.C, pokemon.D, pokemon.S, pokemon.Sum)
-    _, err := db.Exec(query)
+    _, err := db.Exec("INSERT INTO Hgss VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", pokemon.Id, pokemon.Name, pokemon.H, pokemon.A, pokemon.B, pokemon.C, pokemon.D, pokemon.S, pokemon.Sum)
 
 
     if err != nil {
