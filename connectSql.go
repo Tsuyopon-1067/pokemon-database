@@ -33,16 +33,32 @@ func printAll() {
 }
 
 func insert(pokemon Pokemon) {
-	//scraping()
-
     db, _ := sql.Open(SQL_NAME, SQL_LOGIN)
     defer db.Close()
 
 	// Execute the query
 	query := fmt.Sprintf("INSERT INTO Hgss VALUES (%d, '%s', %d, %d, %d, %d, %d, %d, %d)\n", pokemon.Id, pokemon.Name, pokemon.H, pokemon.A, pokemon.B, pokemon.C, pokemon.D, pokemon.S, pokemon.Sum)
-    _, err := db.Query(query)
+    _, err := db.Exec(query)
+
 
     if err != nil {
         panic(err.Error()) // proper error handling instead of panic in your app
+    }
+}
+
+func resetLoad() {
+    db, _ := sql.Open(SQL_NAME, SQL_LOGIN)
+    defer db.Close()
+
+	// Execute the query
+    _, err := db.Query("DELETE FROM Hgss")
+
+    if err != nil {
+        panic(err.Error()) // proper error handling instead of panic in your app
+    }
+
+    pokemonList := scraping()
+    for _, v := range pokemonList {
+        insert(*v)
     }
 }

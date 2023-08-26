@@ -3,10 +3,12 @@
 # 関数とかの仕様
 ## connectSql.go
 SQLとのやりとり
-## printAll()
+### func printAll()
 テーブル内のデータを標準出力
-## insert(pokemon Pokemon)
+### func insert(pokemon Pokemon)
 テーブルにデータ追加
+### func resetLoad()
+テーブルからレコードを全削除してからスクレイピングしたデータを登録する
 ## scraping.go
 スクレイピング関連
 ### func scraping() []*Pokemon
