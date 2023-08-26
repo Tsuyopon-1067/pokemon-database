@@ -1,7 +1,42 @@
 # pokemon-database
+# 概要
+ポケモンのデータをデータベースに登録したり削除したり表示したりする。 <br>
+GoとMariaDB（MySQL）の接続練習。<br>
+
+# 使い方
+## ビルド
+シェルスクリプトを動かせばビルドできる。
+```
+./build.sh
+```
+もしくは普通にビルド。
+```
+go build pokemon_database.go connectSql.go pokemonStruct.go scraping.go
+```
+## データベース
+起動前にSQLの準備が必要。詳細はdoneList.mdを参照。
+
+## オプション
+起動時は以下のようにしてオプションを指定。\<option\>を他の文字に置き換えて指定する。
+```
+./pokemon_database <option>
+```
+- なし 通常モード
+- h ヘルプの表示
+- r データベースのリセット（初回起動に行う）
+
+## 通常モード
+commandは以下の通り。
+- insert：データの挿入
+- delete：データの削除
+- print：データベースの全レコードを標準出力
+- quit：終了
+
+
+
 
 # 関数とかの仕様
-## main.go
+## build pokemon_database.go
 コマンドとかを受け付ける
 ### func main()
 コマンドライン引数かそれ以外で分岐
@@ -43,7 +78,7 @@ wikiからスクレイピングしたデータをスライスに格納して返�
 ## pokemonStruct.go
 構造体関連
 ### type Pokemon struct
-ポケモンデータの構造体 <ID、名前、HP、攻撃、防御、特攻、特防、素早さ、合計>
+ポケモンデータの構造体 <ID, 名前, HP, 攻撃, 防御, 特攻, 特防, 素早さ, 合計>
 ### func pokemonToString(pokemon Pokemon) string
 pokemon構造体を標準出力できる形のstringに変換する
 ### func createPokemon(id int, name string, h int, a int, b int, c int, d int, s int, sum int) Pokemon
